@@ -1,5 +1,6 @@
 const mysql = require('mysql2');
 
+
 //Connect to dabatabase
 const db = mysql.createConnection(
     {

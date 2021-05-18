@@ -46,27 +46,6 @@ router.get('/candidate/:id', (req, res) => {
 });
 
 
-// DELETE a candidate
-router.delete('/candidate/:id', (req, res) => {
-    const sql = `DELETE FROM candidates WHERE id = ?`;
-    const params = [req.params.id];
-
-    db.query(sql, params, (err, result) => {
-        if (err) {
-            res.statusMessage(400).json({ error: res.message });
-        } else if (!result.affectedRows) {
-            res.json({
-                message: 'Candidate not found'
-            });
-        } else {
-            res.json({
-                message: 'deleted',
-                changes: result.affectedRows,
-                id: req.params.id
-            });
-        }
-    });
-});
 
 //CREATE a candidate
 router.post('/candidate', ({ body }, res) => {
@@ -116,6 +95,27 @@ router.put('/candidate/:id', (req, res) => {
 });
 
 
+// DELETE a candidate
+router.delete('/candidate/:id', (req, res) => {
+    const sql = `DELETE FROM candidates WHERE id = ?`;
+    const params = [req.params.id];
+
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            res.statusMessage(400).json({ error: res.message });
+        } else if (!result.affectedRows) {
+            res.json({
+                message: 'Candidate not found'
+            });
+        } else {
+            res.json({
+                message: 'deleted',
+                changes: result.affectedRows,
+                id: req.params.id
+            });
+        }
+    });
+});
 
 
 module.exports = router;
